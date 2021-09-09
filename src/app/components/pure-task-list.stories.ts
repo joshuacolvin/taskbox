@@ -7,29 +7,28 @@ import {
 
 import { CommonModule } from '@angular/common';
 
-import { TaskListComponent } from './task-list.component';
+import { PureTaskListComponent } from './pure-task-list.component';
 import { TaskComponent } from './task.component';
 
 import * as TaskStories from './task.stories';
-import { TaskModule } from './task.module';
-import { NgxsModule } from '@ngxs/store';
 
 export default {
-  component: TaskListComponent,
+  component: PureTaskListComponent,
   decorators: [
     moduleMetadata({
-      // 👇 Imports both components to allow component composition with Storybook
-      imports: [CommonModule, TaskModule, NgxsModule.forRoot([])],
+      // 👇 Imports both components to allow component composition with storybook
+      declarations: [PureTaskListComponent, TaskComponent],
+      imports: [CommonModule],
     }),
     // 👇 Wraps our stories with a decorator
     componentWrapperDecorator(
       (story) => `<div style="margin: 3em">${story}</div>`
     ),
   ],
-  title: 'TaskList',
+  title: 'PureTaskListComponent',
 } as Meta;
 
-const Template: Story<TaskListComponent> = (args) => ({
+const Template: Story<PureTaskListComponent> = (args) => ({
   props: {
     ...args,
     onPinTask: TaskStories.actionsData.onPinTask,
